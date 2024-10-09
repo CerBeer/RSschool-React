@@ -15,7 +15,8 @@
     "test": "vitest",
     "test:run": "vitest run",
     "test:coverage": "npx vitest --coverage",
-    "prepare": "cd .. && npx husky ./.husky"
+    "ff": "tsc && npm run format:fix && npm run lint:fix && npm run test:run",
+    "prepare": "npx husky ./.husky"
   },
   "lint-staged": {
     "src/**/*.{js,ts,tsx,scss,css,json}": "prettier --write",

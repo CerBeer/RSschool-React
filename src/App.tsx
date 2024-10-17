@@ -1,33 +1,37 @@
-import { useState } from 'react';
-import reactLogo from './assets/react.svg';
-import viteLogo from '../public/vite.svg';
 import './App.css';
+import { PureComponent } from 'react';
+import Main from './components/main/Main';
+import Header from './components/header/Header';
 
-function App() {
-  const [count, setCount] = useState(0);
+class App extends PureComponent {
+    state: {searchInput: string};
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank" rel="noreferrer">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank" rel="noreferrer">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React + esLint</h1>
-      <div className="card">
-        <button type="button" onClick={() => setCount((val) => val + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">Click on the Vite and React logos to learn more</p>
-    </>
-  );
+    constructor() {
+        super({});
+
+        this.state = {searchInput: ''};
+        this.handleClick = this.handleClick.bind(this)
+    }
+
+    componentDidMount() {
+        this.setState({searchInput: localStorage.getItem('searchInput') ?? ''})
+    }
+
+    handleClick(search: string) {
+        if (this.state?.searchInput !== search) {
+            this.setState(() => ({searchInput: search}))
+            localStorage.setItem('searchInput', search);
+        }
+    }
+
+    render() {
+    return (
+      <>
+        <Header defaultValue={this.state.searchInput} handleClick={this.handleClick}/>
+        <Main />
+      </>
+    );
+  }
 }
 
 export default App;

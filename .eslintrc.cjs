@@ -22,7 +22,7 @@ module.exports = {
     project: './tsconfig.json',
     tsconfigRootDir: __dirname,
   },
-  plugins: ['react-refresh', 'react', '@typescript-eslint', 'react-compiler', 'prettier'],
+  plugins: ['react-refresh', 'react', '@typescript-eslint', 'react-compiler', 'prettier', 'import'],
   rules: {
     'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
     '@typescript-eslint/no-explicit-any': 'error',
